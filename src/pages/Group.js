@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import HabitatList from '../components/HabitatList'
+import PokeList from '../components/PokeList'
 import { Responsive } from 'semantic-ui-react'
 
-class Home extends Component {
+class Group extends Component {
   render() {
     const { width, height } = this.props.size
-    const { location } = this.props
+    const { location, match } = this.props
     return (
       <Fragment>
         <Responsive style={{
@@ -16,15 +16,15 @@ class Home extends Component {
         }}>
           <div className='App-title'>
             <div>POKEDEX</div>
-            <div style={{ 'textTransform': 'capitalize', 'margin': '30px 0 0', lineHeight: 1 }}>
-              { location.pathname.split('/')[1] } of Pokemon
+            <div style={{ 'textTransform': 'capitalize', 'margin': '30px 0 0', lineHeight: 1.1 }}>
+              { location.pathname.split('/')[1] } - { location.pathname.split('/')[2] }
             </div>
           </div>
-          <HabitatList size={{ height, width }}/>
+          <PokeList data={{ height, width, groupName: match.params.groupName }}/>
         </Responsive>
       </Fragment>
     )
   }
 }
 
-export default connect(null, null)(Home)
+export default connect(null, null)(Group)
